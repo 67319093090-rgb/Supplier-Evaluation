@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supplier Evaluation - ระบบประเมินผู้ผลิต</title>
+<style>
+:root{--nav:#102434;--nav2:#173247;--green:#008c5a;--blue:#1479e8;--bg:#f4f6f9;--line:#dfe5eb;--text:#17212b;--muted:#6b7785;--red:#d83b57;--orange:#d98b00}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text)}
+.app{min-height:100vh}.sidebar{position:fixed;z-index:5;left:0;top:0;bottom:0;width:255px;background:var(--nav);color:#fff;padding:16px 10px;overflow:auto}.brand{display:flex;gap:10px;align-items:center;padding:4px 8px 16px;border-bottom:1px solid #294052}.logo{width:34px;height:34px;border:1px solid #35c997;border-radius:6px;display:grid;place-items:center;color:#35c997;font-weight:bold}.brand b{display:block;font-size:14px}.brand small{color:#aebdca;font-size:9px}.nav{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:12px}.nav button{color:#dbe5ec;background:transparent;border:0;border-radius:5px;padding:9px 7px;font-size:11px;text-align:left;cursor:pointer}.nav button:hover,.nav button.active{background:#24445b;color:#fff}.main{margin-left:255px;padding:18px;max-width:1300px}.page{display:none}.page.active{display:block}.head h1{font-size:21px;margin:0 0 3px}.head p{margin:0;color:var(--muted);font-size:12px}.head{margin-bottom:12px}.toolbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}.btn{border:1px solid #cbd4dd;background:#fff;border-radius:5px;padding:8px 11px;font-size:11px;cursor:pointer}.btn.primary{background:#087f4f;border-color:#087f4f;color:#fff}.btn.danger{color:#b5223d;border-color:#e5a7b3}.btn.blue{background:#1479e8;color:#fff;border-color:#1479e8}.btn.gray{background:#f6f7f8}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card{background:#fff;border:1px solid var(--line);border-radius:7px;padding:12px;min-height:88px}.card .label{font-size:11px;color:#687585}.card .value{font-size:25px;font-weight:700;margin-top:7px}.card .ico{float:right;width:26px;height:26px;border-radius:5px;background:#e9f6f0;color:#087f4f;display:grid;place-items:center}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.panel{background:#fff;border:1px solid var(--line);border-radius:7px;padding:13px}.panel h3{font-size:14px;margin:0 0 12px}.search{width:100%;border:1px solid #cfd7df;border-radius:5px;padding:9px;font-size:11px;margin-bottom:9px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{border-bottom:1px solid #edf0f3;padding:8px 6px;text-align:left;vertical-align:middle}th{color:#6d7884;font-weight:600}.badge{display:inline-block;border-radius:5px;padding:4px 7px;font-size:9px;font-weight:bold}.b-pass{background:#dff5e9;color:#087f4f}.b-improve{background:#fff0bd;color:#8a6500}.b-fail{background:#ffdce3;color:#b5223d}.b-ex{background:#c9f4df;color:#067343}.chart{height:220px;display:flex;align-items:end;justify-content:space-around;gap:15px;padding:15px 8px 25px;border-top:1px solid #edf0f3}.barwrap{height:100%;flex:1;display:flex;align-items:end;justify-content:center;gap:4px}.bar{width:45px;border-radius:4px 4px 0 0;min-height:2px;background:#0d8874;position:relative}.bar.orange{background:#e49a08}.bar.red{background:#dc3454}.bar span{position:absolute;top:-18px;width:100%;text-align:center;font-size:9px}.barlabel{font-size:9px;color:#56626f;position:absolute;bottom:-20px;width:100%;text-align:center}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;font-size:10px;color:#667482;margin-bottom:4px}.field input,.field select,.field textarea{width:100%;padding:9px;border:1px solid #cfd7df;border-radius:5px;font-size:11px}.full{grid-column:1/-1}.score-row{display:grid;grid-template-columns:1fr 80px 55px;align-items:center;gap:8px;border-bottom:1px solid #edf0f3;padding:10px 0;font-size:11px}.score-row input{width:100%;padding:7px;border:1px solid #ccd5dd;border-radius:5px}.totalbox{display:flex;justify-content:space-between;align-items:center;background:#f7f9fb;border:1px solid #e1e7ec;border-radius:6px;padding:12px;margin-top:10px}.total{font-size:22px;font-weight:700}.notice{padding:10px;border-left:3px solid var(--blue);background:#eef6ff;font-size:11px;margin:10px 0}.guide{display:grid;grid-template-columns:210px 1fr;gap:10px}.guide-nav button{width:100%;display:block;text-align:left;background:#f7f9fb;border:0;border-radius:5px;padding:9px;margin:3px 0;font-size:11px;cursor:pointer}.guide-nav button:hover{background:#e8f1fb}.guide-sec{display:none}.guide-sec.active{display:block}.guide-sec h2{font-size:16px;margin-top:0}.guide-sec li{font-size:12px;margin:7px 0}.loginbox{max-width:450px}.small{font-size:9px;color:#77838f}.toast{position:fixed;right:15px;bottom:15px;background:#173247;color:#fff;padding:10px 14px;border-radius:6px;display:none;font-size:11px;z-index:20}
+@media(max-width:900px){.sidebar{position:relative;width:100%;height:auto;padding-bottom:10px}.main{margin:0;padding:12px}.nav{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:1fr 1fr}.grid2,.guide{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.sidebar .brand{max-width:300px}.score-row{grid-template-columns:1fr 70px 50px}}
+@media(max-width:520px){.nav{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr 1fr}.main{padding:9px}.card{padding:10px}.card .value{font-size:21px}table{font-size:9px}.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="logo">✓</div><div><b>Supplier Evaluation</b><small>ระบบประเมินผู้ผลิต</small></div></div>
+ <div class="nav">
+  <button class="active" onclick="go('dashboard',this)">◉ Dashboard</button>
+  <button onclick="go('suppliers',this)">▤ ผู้ผลิต</button>
+  <button onclick="go('evaluate',this)">▦ ประเมินคะแนน</button>
+  <button onclick="go('reports',this)">▥ รายงาน</button>
+  <button onclick="go('users',this)">♧ สิทธิ์ผู้ใช้</button>
+  <button onclick="go('guide',this)">▣ คู่มือ</button>
+ </div>
+</aside>
+
+<main class="main">
+<section id="dashboard" class="page active">
+ <div class="head"><h1>Dashboard</h1><p>ภาพรวมผลการประเมินผู้ผลิตทั้งหมด</p></div>
+ <div class="toolbar"><button class="btn" onclick="seed()">▧ เพิ่มข้อมูลตัวอย่าง</button><button class="btn danger" onclick="clearAll()">♲ ล้างข้อมูล</button></div>
+ <div class="cards">
+  <div class="card"><div class="ico">▤</div><div class="label">จำนวนผู้ผลิต</div><div class="value" id="dPeople">0</div></div>
+  <div class="card"><div class="ico" style="background:#eef4ff;color:#1479e8">⌁</div><div class="label">คะแนนเฉลี่ย</div><div class="value" id="dAvg">0</div></div>
+  <div class="card"><div class="ico" style="background:#fff4dc;color:#b87500">△</div><div class="label">ควรปรับปรุง</div><div class="value" id="dImprove">0</div></div>
+  <div class="card"><div class="ico" style="background:#ffe8ee;color:#c62c4a">⊗</div><div class="label">ไม่ผ่าน</div><div class="value" id="dFail">0</div></div>
+ </div>
+ <div class="grid2">
+  <div class="panel"><h3>กราฟผลประเมิน</h3><div id="chart" class="chart"></div></div>
+  <div class="panel"><h3>Top 10 ผู้ผลิต</h3><table><thead><tr><th>ผู้ผลิต</th><th>คะแนน</th><th>ผลลัพธ์</th></tr></thead><tbody id="top"></tbody></table></div>
+ </div>
+</section>
+
+<section id="suppliers" class="page">
+ <div class="head"><h1>ผู้ผลิต</h1><p>เพิ่ม แก้ไข ลบ ค้นหา และตรวจสอบข้อมูลผู้ผลิต</p></div>
+ <div class="toolbar"><button class="btn" onclick="addSupplier()">▧ เพิ่มผู้ผลิต</button><button class="btn danger" onclick="clearAll()">♲ ล้างข้อมูล</button></div>
+ <div class="panel">
+  <input id="search" class="search" placeholder="ค้นหาชื่อ ผู้ติดต่อ หรือใบรับรอง" oninput="renderSuppliers()">
+  <table><thead><tr><th>ชื่อผู้ผลิต</th><th>ผู้ติดต่อ</th><th>ใบรับรอง</th><th>วันที่เริ่ม</th><th>จัดการ</th></tr></thead><tbody id="supplierTable"></tbody></table>
+ </div>
+</section>
+
+<section id="evaluate" class="page">
+ <div class="head"><h1>ประเมินคะแนน</h1><p>ให้คะแนน 5 ด้าน ด้านละ 0–20 คะแนน ระบบคำนวณคะแนนเต็ม 100 อัตโนมัติ</p></div>
+ <div class="panel">
+  <div class="field"><label>เลือกผู้ผลิต</label><select id="evalSelect" onchange="loadEval()"></select></div>
+  <div id="evalForm" style="margin-top:10px"></div>
+ </div>
+ <div class="panel" style="margin-top:10px"><h3>ประวัติการประเมิน</h3><div style="overflow:auto"><table><thead><tr><th>วันที่</th><th>ผู้ผลิต</th><th>Q</th><th>P</th><th>R</th><th>D</th><th>S</th><th>รวม</th><th>ผลลัพธ์</th></tr></thead><tbody id="history"></tbody></table></div></div>
+</section>
+
+<section id="reports" class="page">
+ <div class="head"><h1>รายงาน</h1><p>กรองผลการประเมินและส่งออกข้อมูล</p></div>
+ <div class="panel">
+  <div class="toolbar"><button class="btn" onclick="exportCSV()">▤ Excel/CSV</button><button class="btn" onclick="window.print()">▧ PDF / พิมพ์</button></div>
+  <div class="formgrid">
+   <div class="field"><label>ผลประเมิน</label><select id="reportFilter" onchange="renderReports()"><option value="all">ทั้งหมด</option><option value="excellent">ดีเยี่ยม</option><option value="pass">ผ่าน</option><option value="improve">ควรปรับปรุง</option><option value="fail">ไม่ผ่าน</option></select></div>
+   <div class="field"><label>ค้นหาผู้ผลิต</label><input id="reportSearch" oninput="renderReports()" placeholder="ชื่อผู้ผลิต"></div>
+  </div>
+ </div>
+ <div class="panel" style="margin-top:10px"><h3>รายงานผลประเมิน</h3><table><thead><tr><th>วันที่</th><th>ผู้ผลิต</th><th>คะแนน</th><th>ระดับ</th><th>ผล</th></tr></thead><tbody id="reportTable"></tbody></table></div>
+</section>
+
+<section id="users" class="page">
+ <div class="head"><h1>สิทธิ์ผู้ใช้</h1><p>ตัวอย่างหน้าจัดการบทบาทสำหรับระบบจริง</p></div>
+ <div class="grid2">
+  <div class="panel loginbox"><h3>Login และ Role</h3><div class="field"><label>Username</label><input value="admin"></div><div class="field" style="margin-top:8px"><label>Password</label><input type="password" value="password"></div><button class="btn primary" style="margin-top:9px" onclick="toast('เข้าสู่ระบบตัวอย่างแล้ว')">เข้าสู่ระบบตัวอย่าง</button><div class="notice">เวอร์ชันไฟล์นี้ใช้ Local Storage เพื่อสาธิตการทำงาน หากนำไปใช้งานหลายเครื่องควรเชื่อมฐานข้อมูลและระบบ Login จริง</div></div>
+  <div class="panel"><h3>บทบาท</h3><table><tr><th>Role</th><th>สิทธิ์</th></tr><tr><td>Admin</td><td>จัดการข้อมูล ผู้ใช้ ประเมิน และรายงาน</td></tr><tr><td>Evaluator</td><td>ประเมินและดูรายงาน</td></tr><tr><td>User</td><td>ดูข้อมูลและรายงาน</td></tr></table></div>
+ </div>
+</section>
+
+<section id="guide" class="page">
+ <div class="head"><h1>คู่มือการใช้งาน</h1><p>คู่มือการใช้งานระบบ Supplier Evaluation</p></div>
+ <div class="guide">
+  <div class="panel guide-nav"><button onclick="guide(1)">1. ภาพรวมระบบ</button><button onclick="guide(2)">2. เพิ่มผู้ผลิต</button><button onclick="guide(3)">3. ประเมินคะแนน</button><button onclick="guide(4)">4. เกณฑ์คะแนน</button><button onclick="guide(5)">5. Dashboard</button><button onclick="guide(6)">6. รายงาน</button><button onclick="guide(7)">7. แก้ไข/ลบ</button><button onclick="guide(8)">8. สิทธิ์ผู้ใช้</button></div>
+  <div class="panel">
+   <article id="g1" class="guide-sec active"><h2>1. ภาพรวมระบบ</h2><p>ระบบใช้สำหรับจัดเก็บข้อมูลผู้ผลิต ประเมินผู้ผลิตตาม 5 ด้าน และสรุปคะแนนอัตโนมัติ</p><div class="notice"><b>ลำดับการใช้งาน:</b> เพิ่มผู้ผลิต → ประเมินคะแนน → บันทึกผล → ตรวจสอบ Dashboard/รายงาน</div></article>
+   <article id="g2" class="guide-sec"><h2>2. เพิ่มผู้ผลิต</h2><ol><li>เลือกเมนู “ผู้ผลิต”</li><li>กด “เพิ่มผู้ผลิต”</li><li>กรอกชื่อ ผู้ติดต่อ ใบรับรอง และวันที่เริ่ม</li><li>กดบันทึก</li></ol><p>เมื่อบันทึกแล้วผู้ผลิตจะปรากฏในรายการและสามารถเลือกไปประเมินได้</p></article>
+   <article id="g3" class="guide-sec"><h2>3. ประเมินคะแนน</h2><ol><li>เลือกเมนู “ประเมินคะแนน”</li><li>เลือกผู้ผลิต</li><li>ให้คะแนนแต่ละด้าน 0–20</li><li>ตรวจสอบคะแนนรวม</li><li>กดบันทึกผลการประเมิน</li></ol><p>ระบบรองรับ 5 ด้าน: <b>Q คุณภาพ, P ราคา, R การตอบสนอง, D การส่งมอบ, S การบริการ</b></p></article>
+   <article id="g4" class="guide-sec"><h2>4. เกณฑ์คะแนน</h2><table><tr><th>คะแนน</th><th>ระดับ</th><th>ผล</th></tr><tr><td>85–100</td><td><span class="badge b-ex">ดีเยี่ยม</span></td><td>ผ่าน</td></tr><tr><td>70–84</td><td><span class="badge b-pass">ผ่าน</span></td><td>ผ่าน</td></tr><tr><td>60–69</td><td><span class="badge b-improve">ควรปรับปรุง</span></td><td>ควรติดตาม</td></tr><tr><td>0–59</td><td><span class="badge b-fail">ไม่ผ่าน</span></td><td>ไม่ผ่าน</td></tr></table></article>
+   <article id="g5" class="guide-sec"><h2>5. Dashboard</h2><p>Dashboard คำนวณจำนวนผู้ผลิต คะแนนเฉลี่ย จำนวนผู้ที่ควรปรับปรุง และจำนวนผู้ที่ไม่ผ่าน พร้อมกราฟแบ่งตามระดับคะแนนและ Top 10 ผู้ผลิต</p></article>
+   <article id="g6" class="guide-sec"><h2>6. รายงาน</h2><p>ใช้ตัวกรองระดับผลประเมินและชื่อผู้ผลิตได้ สามารถส่งออกข้อมูลเป็น CSV ซึ่งเปิดด้วย Excel ได้ และใช้ปุ่ม PDF/พิมพ์เพื่อบันทึกเป็น PDF จากหน้าพิมพ์ของเบราว์เซอร์</p></article>
+   <article id="g7" class="guide-sec"><h2>7. แก้ไขและลบ</h2><p>ในหน้าผู้ผลิต กดปุ่มแก้ไขเพื่อเปลี่ยนข้อมูล และกดถังขยะเพื่อลบ หากลบผู้ผลิต ผลการประเมินของผู้ผลิตนั้นจะถูกลบด้วย</p></article>
+   <article id="g8" class="guide-sec"><h2>8. สิทธิ์ผู้ใช้</h2><p><b>Admin</b> จัดการข้อมูลทั้งหมด, <b>Evaluator</b> ประเมินและดูรายงาน, <b>User</b> ดูข้อมูลและรายงาน</p><div class="notice">ระบบตัวอย่างนี้ยังไม่ใช้ฐานข้อมูลออนไลน์ หากต้องการให้หลายคนใช้งานและเห็นข้อมูลเดียวกัน ต้องเชื่อม Backend/Database เพิ่ม</div></article>
+  </div>
+ </div>
+</section>
+</main></div><div id="toast" class="toast"></div>
+
+<script>
+const KEY='supplier_eval_original_style_v1';
+let data=JSON.parse(localStorage.getItem(KEY)||'[]');
+const cats=[['Q','คุณภาพ'],['P','ราคา'],['R','การตอบสนอง'],['D','การส่งมอบ'],['S','การบริการ']];
+let selected=0;
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
+function level(s){if(s>=85)return['ดีเยี่ยม','b-ex'];if(s>=70)return['ผ่าน','b-pass'];if(s>=60)return['ควรปรับปรุง','b-improve'];return['ไม่ผ่าน','b-fail']}
+function go(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(id==='evaluate')renderEval();if(id==='reports')renderReports();if(id==='dashboard')renderDash()}
+function addSupplier(){
+ const name=prompt('ชื่อผู้ผลิต');if(!name)return;
+ const contact=prompt('ผู้ติดต่อ','');if(contact===null)return;
+ const cert=prompt('ใบรับรอง เช่น ISO 9001, GMP','');if(cert===null)return;
+ const start=prompt('วันที่เริ่ม','1 ส.ค. 2569');if(start===null)return;
+ data.push({id:Date.now(),name,contact,cert,start,scores:[0,0,0,0,0],score:null,date:'',done:false});persist();toast('เพิ่มผู้ผลิตแล้ว')
+}
+function editSupplier(i){
+ let p=data[i],n=prompt('ชื่อผู้ผลิต',p.name);if(n===null)return;
+ let c=prompt('ผู้ติดต่อ',p.contact);if(c===null)return;
+ let cert=prompt('ใบรับรอง',p.cert);if(cert===null)return;
+ p.name=n;p.contact=c;p.cert=cert;persist();toast('แก้ไขข้อมูลแล้ว')
+}
+function deleteSupplier(i){if(confirm('ต้องการลบผู้ผลิตและผลประเมินนี้หรือไม่?')){data.splice(i,1);persist();toast('ลบแล้ว')}}
+function renderSuppliers(){
+ const q=(document.getElementById('search')?.value||'').toLowerCase();
+ let rows=data.filter(p=>(p.name+p.contact+p.cert).toLowerCase().includes(q));
+ document.getElementById('supplierTable').innerHTML=rows.map(p=>{let i=data.indexOf(p);return `<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.contact)}</td><td>${esc(p.cert)}</td><td>${esc(p.start)}</td><td><button class="btn" onclick="startEval(${i})">ประเมิน</button> <button class="btn" onclick="editSupplier(${i})">✎</button> <button class="btn danger" onclick="deleteSupplier(${i})">♲</button></td></tr>`}).join('')||'<tr><td colspan="5" style="text-align:center;padding:25px">ยังไม่มีข้อมูล</td></tr>'
+}
+function startEval(i){selected=i;document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('evaluate').classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.nav button')[2].classList.add('active');renderEval();document.getElementById('evalSelect').value=i}
+function renderEval(){
+ const sel=document.getElementById('evalSelect');if(!sel)return;
+ sel.innerHTML=data.map((p,i)=>`<option value="${i}">${esc(p.name)}</option>`).join('');
+ if(data.length){if(selected>=data.length)selected=0;sel.value=selected;drawEvalForm()}else document.getElementById('evalForm').innerHTML='<div style="padding:25px;text-align:center">กรุณาเพิ่มผู้ผลิตก่อน</div>';
+ renderHistory()
+}
+function loadEval(){selected=Number(document.getElementById('evalSelect').value);drawEvalForm()}
+function drawEvalForm(){
+ let p=data[selected];if(!p)return;
+ document.getElementById('evalForm').innerHTML=`<div class="panel" style="background:#fafbfc"><b>${esc(p.name)}</b><div class="small">${esc(p.contact)} · ${esc(p.cert)}</div></div>`+
+ cats.map((c,i)=>`<div class="score-row"><div><b>${c[0]}</b> — ${c[1]}<br><span class="small">คะแนนเต็ม 20</span></div><input id="sc${i}" type="number" min="0" max="20" value="${p.scores?.[i]||0}" oninput="calcScore()"><span id="sv${i}">${p.scores?.[i]||0}/20</span></div>`).join('')+
+ `<div class="totalbox"><div><div class="small">คะแนนรวม</div><div class="total" id="totalScore">0/100</div></div><div id="level"></div></div><button class="btn primary" style="margin-top:10px" onclick="saveEvaluation()">▣ บันทึกผลการประเมิน</button>`;
+ calcScore()
+}
+function calcScore(){let sum=0;cats.forEach((_,i)=>{let v=Math.min(20,Math.max(0,Number(document.getElementById('sc'+i)?.value||0)));sum+=v;if(document.getElementById('sv'+i))document.getElementById('sv'+i).textContent=v+'/20'});let l=level(sum);document.getElementById('totalScore').textContent=sum+'/100';document.getElementById('level').innerHTML=`<span class="badge ${l[1]}">${l[0]}</span>`}
+function saveEvaluation(){let p=data[selected];p.scores=cats.map((_,i)=>Math.min(20,Math.max(0,Number(document.getElementById('sc'+i).value||0))));p.score=p.scores.reduce((a,b)=>a+b,0);p.date=new Date().toLocaleDateString('th-TH');p.done=true;persist();toast('บันทึกผลการประเมินแล้ว')}
+function renderHistory(){let h=document.getElementById('history');if(!h)return;h.innerHTML=data.filter(p=>p.done).sort((a,b)=>b.id-a.id).map(p=>{let l=level(p.score);return `<tr><td>${p.date}</td><td>${esc(p.name)}</td>${p.scores.map(x=>`<td>${x}</td>`).join('')}<td><b>${p.score}</b></td><td><span class="badge ${l[1]}">${l[0]}</span></td></tr>`}).join('')||'<tr><td colspan="9" style="text-align:center;padding:20px">ยังไม่มีผลการประเมิน</td></tr>'}
+function renderDash(){
+ let done=data.filter(p=>p.done),avg=done.length?Math.round(done.reduce((a,p)=>a+p.score,0)/done.length):0;
+ document.getElementById('dPeople').textContent=data.length;document.getElementById('dAvg').textContent=avg;document.getElementById('dImprove').textContent=done.filter(p=>p.score>=60&&p.score<70).length;document.getElementById('dFail').textContent=done.filter(p=>p.score<60).length;
+ let groups=[done.filter(p=>p.score>=70&&p.score<85).length,done.filter(p=>p.score>=60&&p.score<70).length,done.filter(p=>p.score<60).length,done.filter(p=>p.score>=85).length];
+ let labels=['ผ่าน','ควรปรับปรุง','ไม่ผ่าน','ดีเยี่ยม'],cls=['','orange','red',''];let max=Math.max(1,...groups);
+ document.getElementById('chart').innerHTML=groups.map((v,i)=>`<div class="barwrap"><div class="bar ${cls[i]}" style="height:${Math.max(2,v/max*155)}px"><span>${v}</span><div class="barlabel">${labels[i]}</div></div></div>`).join('');
+ document.getElementById('top').innerHTML=done.sort((a,b)=>b.score-a.score).slice(0,10).map(p=>{let l=level(p.score);return `<tr><td>${esc(p.name)}</td><td>${p.score}</td><td><span class="badge ${l[1]}">${l[0]}</span></td></tr>`}).join('')||'<tr><td colspan="3" style="text-align:center;padding:20px">ยังไม่มีข้อมูล</td></tr>'
+}
+function renderReports(){let f=document.getElementById('reportFilter')?.value||'all',q=(document.getElementById('reportSearch')?.value||'').toLowerCase();let arr=data.filter(p=>p.done&&p.name.toLowerCase().includes(q)).filter(p=>f==='all'||level(p.score)[1]===({excellent:'b-ex',pass:'b-pass',improve:'b-improve',fail:'b-fail'}[f]));document.getElementById('reportTable').innerHTML=arr.map(p=>{let l=level(p.score);return `<tr><td>${p.date}</td><td>${esc(p.name)}</td><td>${p.score}</td><td><span class="badge ${l[1]}">${l[0]}</span></td><td>${p.score>=70?'ผ่าน':'ไม่ผ่าน'}</td></tr>`}).join('')||'<tr><td colspan="5" style="text-align:center;padding:20px">ไม่พบข้อมูล</td></tr>'}
+function exportCSV(){let rows=[['วันที่','ผู้ผลิต','Q','P','R','D','S','คะแนนรวม','ระดับ']];data.filter(p=>p.done).forEach(p=>rows.push([p.date,p.name,...p.scores,p.score,level(p.score)[0]]));let csv='\\ufeff'+rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',')).join('\\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='supplier_evaluation_report.csv';a.click()}
+function guide(n){document.querySelectorAll('.guide-sec').forEach(x=>x.classList.remove('active'));document.getElementById('g'+n).classList.add('active')}
+function seed(){data=[{id:1,name:'บริษัท เอเชียพาร์ท จำกัด',contact:'คุณสุรชัย',cert:'ISO 9001',start:'1 ก.ค. 2569',scores:[18,16,17,18,17],score:86,date:'1 ก.ค. 2569',done:true},{id:2,name:'ไทยเมทัล ซัพพลาย',contact:'คุณอร',cert:'ISO 14001',start:'2 ก.ค. 2569',scores:[14,13,15,14,13],score:69,date:'2 ก.ค. 2569',done:true},{id:3,name:'พรีเมีย แพ็คเกจจิ้ง',contact:'คุณวิชา',cert:'GMP, HACCP',start:'3 ก.ค. 2569',scores:[19,18,18,19,18],score:92,date:'3 ก.ค. 2569',done:true},{id:4,name:'โกลบอล คอมโพเนนท์',contact:'คุณมลลิกา',cert:'IATF 16949',start:'4 ก.ค. 2569',scores:[10,11,12,9,10],score:52,date:'4 ก.ค. 2569',done:true}];persist();toast('เพิ่มข้อมูลตัวอย่างแล้ว')}
+function clearAll(){if(confirm('ล้างข้อมูลทั้งหมดหรือไม่?')){data=[];persist();toast('ล้างข้อมูลแล้ว')}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function toast(s){let t=document.getElementById('toast');t.textContent=s;t.style.display='block';setTimeout(()=>t.style.display='none',1800)}
+function renderAll(){renderDash();renderSuppliers();renderEval();renderReports()}
+renderAll()
+</script>
+<style>@media print{.sidebar,.toolbar,.btn{display:none!important}.main{margin:0}.page{display:none!important}#reports{display:block!important}.panel{box-shadow:none}}</style>
+</body>
+</html>
